@@ -1,0 +1,11 @@
+package: iamcc.cn/frameworks
+import:
+- package: github.com/gin-gonic/gin
+  version: ^1.3.0
+- package: github.com/jinzhu/now
+  version: ^1.0.0
+- package: github.com/olivere/elastic
+  version: ^6.2.16
+- package: gopkg.in/mgo.v2
+  subpackages:
+  - bson
