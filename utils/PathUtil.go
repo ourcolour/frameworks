@@ -14,3 +14,11 @@ func GetAppPath() string {
 
 	return path[:index]
 }
+
+func ExistsPath(path string) bool {
+	var exist = true
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		exist = false
+	}
+	return exist
+}
