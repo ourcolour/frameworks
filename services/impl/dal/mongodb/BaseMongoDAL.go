@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"github.com/ourcolour/frameworks/constants/errs"
+	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"reflect"
