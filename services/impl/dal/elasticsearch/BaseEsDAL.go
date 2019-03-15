@@ -10,18 +10,26 @@ import (
 	"strings"
 )
 
-func getEsUrl(host string, port int) string {
+const (
+	DEFAULT_HOST = "0.0.0.0"
+	DEFAULT_PORT = 9200
+)
+
+func getEsUrl() string {
+	return getEsUrlWithHostAndPort(DEFAULT_HOST, DEFAULT_PORT)
+}
+
+func getEsUrlWithHostAndPort(host string, port int) string {
 	return fmt.Sprintf("http://%s:%d", host, port)
 }
 
 func getClientWithEnableSniffer(host string, port int, enableSniffer bool) (*elastic.Client, error) {
 	elastic.SetSniff(enableSniffer)
-	url := getEsUrl(host, port)
-	return elastic.NewClient(elastic.SetURL(url))
+	return elastic.NewClient(elastic.SetURL(getEsUrlWithHostAndPort(host, port)))
 }
 
 func getClient() (*elastic.Client, error) {
-	return getClientWithEnableSniffer(false)
+	return getClientWithEnableSniffer(DEFAULT_HOST, DEFAULT_PORT, false)
 }
 func mustGetClient() *elastic.Client {
 	client, err := elastic.NewClient(elastic.SetURL(getEsUrl()))
