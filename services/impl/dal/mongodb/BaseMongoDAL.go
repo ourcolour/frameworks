@@ -192,7 +192,7 @@ func Count(dbName string, colName string, selector bson.M) (int, error) {
 }
 
 func MustFindOne(dbName string, colName string, selector bson.M) interface{} {
-	val, err := FindOne(colName, selector)
+	val, err := FindOne(dbName, colName, selector)
 	if nil != err {
 		return nil
 	} else {
@@ -201,7 +201,7 @@ func MustFindOne(dbName string, colName string, selector bson.M) interface{} {
 }
 
 func MustFindAll(dbName string, colName string, selector bson.M, typ reflect.Type) []interface{} {
-	result, err := FindAll(colName, selector, typ)
+	result, err := FindAll(dbName, colName, selector, typ)
 	if nil != err {
 		log.Panicln(err)
 	}
@@ -209,7 +209,7 @@ func MustFindAll(dbName string, colName string, selector bson.M, typ reflect.Typ
 }
 
 func MustFindList(dbName string, colName string, selector bson.M, typ reflect.Type, skip int, limit int) ([]interface{}, int64) {
-	result, total, err := FindList(colName, selector, typ, skip, limit)
+	result, total, err := FindList(dbName, colName, selector, typ, skip, limit)
 	if nil != err {
 		log.Panicln(err)
 	}
